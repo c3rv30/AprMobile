@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/c3rv30/Android-Projects/AprMobile/app/libs/android-async-http-1.4.4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.0"
+        sha1="3bae85a076241828810bf8fbcc12e5891d5fc34c">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/pre-dexed/debug/android-async-http-1.4.4_6610b62f675208eb4bd4c74ef3a6fdcb41ac638b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/c3rv30/Android-Projects/AprMobile/app/libs/gson-2.2.4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.0"
+        sha1="973e832af433b44c3ed11c426f2f390b29f3f3f8">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/pre-dexed/debug/gson-2.2.4_d648a824165fa33b2f8e19d4d70312a2005052aa.jar" />
+    </item>
+
+</items>
