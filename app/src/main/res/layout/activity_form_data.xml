@@ -2,244 +2,246 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.icg.aprmobile.MainActivity"
-    android:focusableInTouchMode="true">
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:text="NOMBRE"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="16dp" />
-
-    <TextView
-        android:id="@+id/nom"
-        android:layout_width="330dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="90dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="20dp"
-        android:text="DIRECCION"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nom"
-        android:layout_marginStart="16dp" />
-
-    <TextView
-        android:id="@+id/sector"
-        android:layout_width="250dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        android:layout_marginStart="32dp" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="90dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="20dp"
-        android:text="Nº MEDIDOR"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sector"
-        android:layout_marginStart="16dp" />
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    tools:context="com.icg.aprmobile.MainActivity">
 
     <TextView
         android:id="@+id/nroMedi"
         android:layout_width="123dp"
         android:layout_height="20dp"
-        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
+        android:layout_weight="1"
         android:text="TextView"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
-        android:layout_marginStart="32dp" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:text="NOMBRE"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="120dp"
         android:layout_height="20dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
+        android:layout_weight="1"
         android:text="ULTIMA LECTURA"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nroMedi"
-        android:layout_marginStart="16dp" />
-
-    <TextView
-        android:id="@+id/fecUltLec"
-        android:layout_width="119dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
-        android:layout_marginStart="32dp" />
-
-    <TextView
-        android:id="@+id/valLecAnt"
-        android:layout_width="94dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="75dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintLeft_toRightOf="@+id/fecUltLec"
-        app:layout_constraintTop_toBottomOf="@+id/textView12"
-        android:layout_marginStart="75dp" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_marginLeft="76dp"
-        android:text="VALOR"
-        app:layout_constraintLeft_toRightOf="@+id/textView9"
-        app:layout_constraintTop_toTopOf="@+id/textView9"
-        android:layout_marginStart="76dp" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="122dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="20dp"
-        android:text="NUEVA LECTURA"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fecUltLec"
-        android:layout_marginStart="16dp" />
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_marginLeft="74dp"
-        android:text="VALOR"
-        app:layout_constraintLeft_toRightOf="@+id/textView13"
-        app:layout_constraintTop_toTopOf="@+id/textView13"
-        android:layout_marginStart="74dp" />
-
-    <TextView
-        android:id="@+id/perNvaLec"
-        android:layout_width="119dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-    <EditText
-        android:id="@+id/valUltLec"
-        android:layout_width="107dp"
-        android:layout_height="43dp"
-        android:layout_marginLeft="79dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="number"
-        android:textColor="@android:color/black"
-        app:layout_constraintLeft_toRightOf="@+id/perNvaLec"
-        app:layout_constraintTop_toBottomOf="@+id/textView14"
-        android:layout_marginStart="79dp" />
+        app:layout_constraintTop_toBottomOf="@+id/nroMedi" />
 
     <EditText
         android:id="@+id/obvTxt"
         android:layout_width="349dp"
         android:layout_height="64dp"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginStart="16dp"
         android:layout_marginTop="45dp"
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/perNvaLec" />
 
     <TextView
-        android:id="@+id/nroSocio"
+        android:id="@+id/textView7"
         android:layout_width="90dp"
         android:layout_height="20dp"
-        android:text="Nº Socio"
-        app:layout_constraintLeft_toRightOf="@+id/textView7"
-        android:layout_marginLeft="106dp"
-        app:layout_constraintTop_toTopOf="@+id/textView7"
-        android:layout_marginStart="106dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
+        android:text="Nº MEDIDOR"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sector" />
+
+    <TextView
+        android:id="@+id/valLecAnt"
+        android:layout_width="94dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:text="TextView"
+        app:layout_constraintLeft_toRightOf="@+id/fecUltLec"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <TextView
         android:id="@+id/nrosocio"
         android:layout_width="100dp"
         android:layout_height="20dp"
-        android:layout_marginLeft="75dp"
+        android:layout_marginStart="75dp"
         android:layout_marginTop="8dp"
+        android:layout_weight="1"
         android:text="TextView"
         app:layout_constraintLeft_toRightOf="@+id/nroMedi"
-        app:layout_constraintTop_toBottomOf="@+id/nroSocio"
-        android:layout_marginStart="75dp" />
+        app:layout_constraintTop_toBottomOf="@+id/nroSocio" />
+
+    <TextView
+        android:id="@+id/nroSocio"
+        android:layout_width="90dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="106dp"
+        android:layout_weight="1"
+        android:text="Nº Socio"
+        app:layout_constraintLeft_toRightOf="@+id/textView7"
+        app:layout_constraintTop_toTopOf="@+id/textView7" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:text="Anterior"
+        android:textAlignment="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/obvTxt" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="90dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
+        android:text="DIRECCION"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nom" />
+
+    <Button
+        android:id="@+id/update"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:onClick="updateDB"
+        android:text="Actualizar"
+        app:layout_constraintLeft_toRightOf="@+id/button2"
+        app:layout_constraintTop_toBottomOf="@+id/obvTxt" />
+
+    <TextView
+        android:id="@+id/fecUltLec"
+        android:layout_width="119dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:text="TextView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/sector"
+        android:layout_width="250dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:text="TextView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/nom"
+        android:layout_width="330dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:text="TextView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/perNvaLec"
+        android:layout_width="119dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:text="TextView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="6dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_weight="1"
         android:text="OBSERVACION"
         app:layout_constraintBottom_toTopOf="@+id/obvTxt"
-        android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="24dp"
-        app:layout_constraintTop_toBottomOf="@+id/perNvaLec"
-        android:layout_marginStart="16dp" />
+        app:layout_constraintTop_toBottomOf="@+id/perNvaLec" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Anterior"
-        android:textAlignment="center"
+    <EditText
+        android:id="@+id/valUltLec"
+        android:layout_width="107dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="79dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="number"
+        android:textColor="@android:color/black"
+        app:layout_constraintLeft_toRightOf="@+id/perNvaLec"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="122dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
+        android:text="NUEVA LECTURA"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/obvTxt"
-        android:layout_marginStart="16dp" />
+        app:layout_constraintTop_toBottomOf="@+id/fecUltLec" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="74dp"
+        android:layout_weight="1"
+        android:text="VALOR"
+        app:layout_constraintLeft_toRightOf="@+id/textView13"
+        app:layout_constraintTop_toTopOf="@+id/textView13" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
+        android:layout_weight="1"
         android:text="Siguiente"
         app:layout_constraintLeft_toRightOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/obvTxt"
-        android:layout_marginStart="20dp" />
+        app:layout_constraintTop_toBottomOf="@+id/obvTxt" />
 
-    <Button
-        android:id="@+id/update"
+    <TextView
+        android:id="@+id/textView12"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="16dp"
-        android:text="Actualizar"
-        app:layout_constraintLeft_toRightOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/obvTxt"
-        android:layout_marginStart="32dp"
-        android:onClick="updateDB"/>
+        android:layout_height="20dp"
+        android:layout_marginStart="76dp"
+        android:layout_weight="1"
+        android:text="VALOR"
+        app:layout_constraintLeft_toRightOf="@+id/textView9"
+        app:layout_constraintTop_toTopOf="@+id/textView9" />
 
 </android.support.constraint.ConstraintLayout>

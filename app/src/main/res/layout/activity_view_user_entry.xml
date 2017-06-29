@@ -2,11 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+
     android:orientation="vertical"
     android:padding="10dp"
     android:focusableInTouchMode="false"
     android:focusable="false">
-
 
     <!--
     <TextView
@@ -36,7 +36,7 @@
         android:layout_alignParentTop="true"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@android:color/black"
-        android:textSize="9sp" />
+        android:textSize="17sp" />
 
     <TextView
         android:id="@+id/dir"
@@ -45,7 +45,18 @@
         android:layout_below="@+id/name"
         android:layout_marginTop="5dp"
         android:textColor="@android:color/black"
-        android:textSize="9sp" />
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/cod_medidor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dir"
+        android:text="niee"
+        android:layout_marginLeft="0sp"
+        android:textColor="@android:color/black"
+        android:textSize="17sp"
+        android:textStyle="bold" />
 
 
 
@@ -62,15 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true">
 
-        <TextView
-            android:id="@+id/cod_medidor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="niee"
-            android:layout_marginLeft="100sp"
-            android:textColor="@android:color/black"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+
     </LinearLayout>
 
 </RelativeLayout>
