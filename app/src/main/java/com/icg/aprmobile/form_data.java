@@ -4,8 +4,8 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.sax.StartElementListener;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -22,8 +22,10 @@ import DB.DBController;
  */
 
 public class form_data extends AppCompatActivity {
-
+    // DB Class to perform DB related operations
     DBController controller = new DBController(this);
+    // Location Class
+    LocationController location = new LocationController();
     private java.util.Calendar calendar;
     private TextView dateView;
     private int year, month, day;
@@ -101,7 +103,16 @@ public class form_data extends AppCompatActivity {
         fecAct = dateView.getText().toString();
         lecAct = txtvalUltLec.getText().toString();
         obsrv = txtobvTxt.getText().toString();
+        String lati, longi;
+        HashMap<String, String> coordinates = location.displayLocation();
+        lati = coordinates.get("lat");
+        longi = coordinates.get("long");
+        Log.d("Cordenada", "Latitud "+ lati);
+        Log.d("Cordenada", "Longitud "+ longi);
+
+
         controller.updateClients(nroMed, fecAct, lecAct, obsrv);
+
         Toast.makeText(getApplicationContext(), "Datos Actualizados!!", Toast.LENGTH_LONG).show();
         reloadActivity();
         Intent objIntent = new Intent(getApplicationContext(), MainActivity.class);

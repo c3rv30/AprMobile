@@ -2,13 +2,10 @@ package com.icg.aprmobile;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -29,8 +26,6 @@ import DB.DBController;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -51,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<HashMap<String, String>> userList = controller.getAllUsersLec();
         //ArrayList<HashMap<String, String>> userList = controller.getNroMed();
         //ArrayList<String> userList = controller.getNroMedArray();
-
 
         //
         //Cursor cursor = controller.getNroMed("medi");
@@ -77,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                TextView medi = view.findViewById(R.id.cod_medidor);
+                TextView medi = (TextView) view.findViewById(R.id.cod_medidor);
                 String cod = medi.getText().toString();
                 Intent intent = new Intent(MainActivity.this, form_data.class);
                 intent.putExtra("cod_medidor", cod);
