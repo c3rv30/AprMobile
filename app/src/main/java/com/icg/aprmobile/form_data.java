@@ -32,6 +32,7 @@ public class form_data extends AppCompatActivity {
     private java.util.Calendar calendar;
     private TextView dateView;
     private int year, month, day;
+    
     private String android_id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
     String androidId = Settings.Secure.getString(getContentResolver(),Settings.Secure.ANDROID_ID);
 
