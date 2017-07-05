@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
@@ -94,6 +95,10 @@ public class MainActivity extends AppCompatActivity {
     public void deleteTable(View v){
         controller.deleteFromTableLec();
         reloadActivity();
+    }
+
+    public void upData(View v){
+        syncSQLiteToMySQLDB();
     }
 
     // Method to Sync MySQL to SQLite DB
@@ -205,6 +210,66 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    public void syncSQLiteToMySQLDB(){
+        //Create AsycHttpClient object
+        AsyncHttpClient client = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+        ArrayList<HashMap<String, String>> userList =  controller.getAllUsersLec();
+        if(userList.size()!=0){
+            //if(controller.dbSyncCount() != 0){
+                prgDialog.show();
+                params.put("usersJSON", controller.composeJSONfromSQLite());
+
+                client.post("http://www.informaticacasagrande.cl/aprweb/apr/lecturas/leerjson.asp",params ,new AsyncHttpResponseHandler() {
+                    //http://www.informaticacasagrande.cl/aprweb/apr/lecturas/leerjson.asp
+
+                    @Override
+                    public void onSuccess(String response) {
+                        System.out.println(response);
+                        prgDialog.hide();
+                        try {
+                            JSONArray arr = new JSONArray(response);
+                            System.out.println(arr.length());
+                            /*for(int i=0 ; i<arr.length() ; i++){
+                                JSONObject obj = (JSONObject)arr.get(i);
+                                System.out.println(obj.get("id"));
+                                System.out.println(obj.get("status"));
+                                controller.updateSyncStatus(obj.get("id").toString(),obj.get("status").toString());
+                            }*/
+                            Toast.makeText(getApplicationContext(), "Sincronizacion completa!", Toast.LENGTH_LONG).show();
+                        } catch (JSONException e) {
+                            // TODO Auto-generated catch block
+                            //Toast.makeText(getApplicationContext(), "Error Occured [Server's JSON response might be invalid]!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "OK", Toast.LENGTH_LONG).show();
+                            e.printStackTrace();
+                            Log.e("Error", "Response");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Throwable error, String content) {
+                        // TODO Auto-generated method stub
+                        prgDialog.hide();
+                        if(statusCode == 404){
+                            Toast.makeText(getApplicationContext(), "Requested resource not found", Toast.LENGTH_LONG).show();
+                        }else if(statusCode == 500){
+                            Toast.makeText(getApplicationContext(), "Something went wrong at server end", Toast.LENGTH_LONG).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(), "Error inesperado! [Error mas comun: Dispositivo sin conexion a internet ]", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+            //}else{
+            //    Toast.makeText(getApplicationContext(), "SQLite and Remote MySQL DBs are in Sync!", Toast.LENGTH_LONG).show();
+            //}
+        }else{
+            Toast.makeText(getApplicationContext(), "No hay Datos para Subir", Toast.LENGTH_LONG).show();
+        }
+    }
+
+
 
     // Reload MainActivity
     public void reloadActivity() {

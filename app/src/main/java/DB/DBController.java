@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -89,7 +92,7 @@ public class DBController extends SQLiteOpenHelper {
     // Get list of Users from SQLite DB as Array List
     public ArrayList<HashMap<String, String>> getAllUsersLec() {
         ArrayList<HashMap<String, String>> usersList;
-        usersList = new ArrayList<HashMap<String, String>>();
+        usersList = new ArrayList<>();
         // Select All Query
         String selectQuery = "SELECT * FROM " + TABLE_CLIENTES;
         SQLiteDatabase database = this.getWritableDatabase();
@@ -97,7 +100,7 @@ public class DBController extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                HashMap<String, String> map = new HashMap<String, String>();
+                HashMap<String, String> map = new HashMap<>();
                 map.put("nom", cursor.getString(0));
                 map.put("nro_socio", cursor.getString(1));
                 map.put("lec_ant", cursor.getString(2));
@@ -109,12 +112,13 @@ public class DBController extends SQLiteOpenHelper {
                 usersList.add(map);
             } while (cursor.moveToNext());
         }
-        database.close();
+        cursor.close();
+        //database.close();
         return usersList;
     }
 
     public ArrayList<HashMap<String, String>> getNroMed() {
-        ArrayList<HashMap<String, String>> usersList = new ArrayList<HashMap<String, String>>();
+        ArrayList<HashMap<String, String>> usersList = new ArrayList<>();
         SQLiteDatabase database = this.getReadableDatabase();
         Cursor cursor =  database.rawQuery( "SELECT "+KEY_NRO_MEDIDOR+" FROM "+TABLE_CLIENTES+"", null );
         // looping through all rows and adding to list
@@ -125,7 +129,8 @@ public class DBController extends SQLiteOpenHelper {
                 usersList.add(map);
             } while (cursor.moveToNext());
         }
-        database.close();
+        cursor.close();
+        //database.close();
         return usersList;
     }
 
@@ -143,7 +148,8 @@ public class DBController extends SQLiteOpenHelper {
                 usersList.add(medi);
             } while (cursor.moveToNext());
         }
-        database.close();
+        cursor.close();
+        //database.close();
         return usersList;
     }
 
@@ -152,16 +158,16 @@ public class DBController extends SQLiteOpenHelper {
     // Get list of Users from SQLite DB as Array List
     public HashMap<String, String> getClientData(String nroMedi) {
         HashMap<String, String> usersList;
-        String nroMed = nroMedi;
-        usersList = new HashMap<String, String>();
+        //String nroMed = nroMedi;
+        usersList = new HashMap<>();
         // Select All Query
-        String selectQuery = "SELECT * FROM "+TABLE_CLIENTES+" WHERE "+KEY_NRO_MEDIDOR+"='"+nroMed+"'";
+        String selectQuery = "SELECT * FROM "+TABLE_CLIENTES+" WHERE "+KEY_NRO_MEDIDOR+"='"+nroMedi+"'";
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.rawQuery(selectQuery, null);
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                HashMap<String, String> map = new HashMap<String, String>();
+                //HashMap<String, String> map = new HashMap<>();
                 usersList.put("nom", cursor.getString(0));
                 usersList.put("nro_socio", cursor.getString(1));
                 usersList.put("lec_ant", cursor.getString(2));
@@ -174,7 +180,8 @@ public class DBController extends SQLiteOpenHelper {
                 //usersList.putAll(map);
             } while (cursor.moveToNext());
         }
-        database.close();
+        cursor.close();
+        //database.close();
         return usersList;
     }
 
@@ -197,5 +204,43 @@ public class DBController extends SQLiteOpenHelper {
         String query;
         query = "DELETE FROM " + TABLE_CLIENTES;
         database.execSQL(query);
+    }
+
+
+
+    /**
+     * Compose JSON out of SQLite records
+     * @return
+     */
+    public String composeJSONfromSQLite(){
+        String lati, longi;
+        lati = "0";
+        longi = "0";
+        ArrayList<HashMap<String, String>> wordList;
+        wordList = new ArrayList<>();
+        String selectQuery = "SELECT "+KEY_NRO_SOCIO+"," +
+                ""+KEY_LEC_ACTUAL+"," +
+                ""+KEY_PER_LEC_ACTUAL+"," +
+                ""+KEY_NRO_MEDIDOR+"" +
+                " FROM " +TABLE_CLIENTES;
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<>();
+                map.put("nro_socio", cursor.getString(0));
+                map.put("lec_act", cursor.getString(1));
+                map.put("per_lec_act", cursor.getString(2));
+                map.put("medi", cursor.getString(3));
+                map.put("latitud", lati);
+                map.put("longitud", longi);
+                wordList.add(map);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        //database.close();
+        Gson gson = new GsonBuilder().create();
+        //Use GSON to serialize Array List to JSON
+        return gson.toJson(wordList);
     }
 }

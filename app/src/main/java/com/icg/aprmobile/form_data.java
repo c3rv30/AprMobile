@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +17,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 import DB.DBController;
+import android.content.Context;
+import static java.security.AccessController.getContext;
 
 /**
  * Created by c3rv30 on 6/23/17.
@@ -29,6 +32,8 @@ public class form_data extends AppCompatActivity {
     private java.util.Calendar calendar;
     private TextView dateView;
     private int year, month, day;
+    private String android_id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+    String androidId = Settings.Secure.getString(getContentResolver(),Settings.Secure.ANDROID_ID);
 
     TextView txtnom;
     TextView txtsector;
@@ -43,8 +48,10 @@ public class form_data extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_form_data);
+        setContentView(R.layout.activity_form_data_new);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
 
         Bundle mBundle = getIntent().getExtras();
         String nroMed = (String) mBundle.get("cod_medidor");
@@ -103,12 +110,12 @@ public class form_data extends AppCompatActivity {
         fecAct = dateView.getText().toString();
         lecAct = txtvalUltLec.getText().toString();
         obsrv = txtobvTxt.getText().toString();
-        String lati, longi;
+/*        String lati, longi;
         HashMap<String, String> coordinates = location.displayLocation();
         lati = coordinates.get("lat");
         longi = coordinates.get("long");
         Log.d("Cordenada", "Latitud "+ lati);
-        Log.d("Cordenada", "Longitud "+ longi);
+        Log.d("Cordenada", "Longitud "+ longi);*/
 
 
         controller.updateClients(nroMed, fecAct, lecAct, obsrv);
