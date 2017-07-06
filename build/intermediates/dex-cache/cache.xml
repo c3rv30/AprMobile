@@ -3,39 +3,660 @@
 
     <item
         is-multidex="true"
-        jar="/Users/c3rv30/android-projects/AprMobile/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jar="/Users/c3rv30/.android/build-cache/1687149915e9a9a05192baa9e79cc702de93258c/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="589f444b075f47c43c78d6d7c46198b34ce4c1b6">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_720520e20da6b2158e2fdf166b13b830c6c6d8f9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/480d35c6ab0fa6a96fb1d29bb05f902b875c307c/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="611fe78f6c12c8a0deeb2ad8dea4a5a247570339">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_6e18879ba2e6d43227bdcd2d239169dbddad0b73/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/ee97a33ef48d98abc3280c0a7c335e897349fbe5/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d4ba7399a1a4f5c998b5ce4f6bf33a2e8347820c">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e817e8b6ad6af0f6bac46df571ab068989ece36d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/fc8771aed951c67435a8e23ff881c9f3393242d6/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="f70a8005cc2f6d37e4840f34901eeba3a41de5de">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ce3413310d888ad88e1c4dc5eea7909b3223ccca/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/4175a0458a8d29fd425428c6d116de1e4f8944dc/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f1238f9c4b36b38145f1af428127106241196ad6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/b74cd2f57c50cca303a332abce1b46230f18eb16/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0403a6c955272a546a25ae4c085f5fb728de3a42">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_5a0e3d74a42ab9237a0cc16bc725daf5782e3e1c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/7f5f9041c91de8a0a68cd43264bb132a1df0a88c/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="21160c044ba984fb2e33b833c89a496becb85cfd">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_1028f5b9eb5bf1dc8a513b6431b815375fa0abab/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/e0420f46c53af0d3e862b099a62e3c18a1e5ea70/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="32054268e6c9fdff0c9c5deafafd0bd105120fb6">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2b71279fe7260a298b8cb4e7b5bdb4b6da609489/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/aaa7393518612dd9b2835172616dc4e0da41fc80/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2c91b7400bae2674c3409555db2c34fc0488da56/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/ace0ef8ea7f1000fba5ac9592a26bda9b168cd5f/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d1fbaee850d07f3fee6af2085239f6d1cdbd6818">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_6427fe25fb46a10e783b15f58b86342e1924d408/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/669dc8f1f66019e78e1858af70ef7c7c867381ba/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6178e31397c24ab1bfc09766832cdcf519621eb7">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b3bda10f78a8807329185b954ce174fdaf96682f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/008721ff6c8eacf4c85fb6bf0eb9713da64da144/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_bb276ba0827afc6d1c339c2c7bcb3b02a3dac3bb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/f962c8e3347bf6511b4003fc4f46b84ff68a93fa/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_cf3693295fb717ed32fdc67d3402ce32b0161829/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/ca8a57ebc8fde76f266bcf90e9503e09d20148f1/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b132c56e382e8b63e43a0ab0110ddb064fc624d8">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_7e226ea5975804b70d240c63b229c91864a6f2c7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/2115795ce4f46fa656ca652b6184b54acab88030/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6d4384aa06b19d6aecdb87102784d5c0d2ea7532">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_01fa631210329f94a00ab3758d24488f4b668296/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/205474340128ad41c4e440cf1d99f117886fe107/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_55580b3d8ead9d1ccb8003ef75944f34c5c0c4b7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/be674c6920ca594ab47439513407f1e95b9cb7a7/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1dfef62219fda6d848b8a24dad7318ea52cd476d">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e15fcf81410549d047a02422feb3bdd18f8e9b44/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/cc6750afac617349055ffd5ac725120d39c90280/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="dc4ae725967274969c55950ec75a677847a73510">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_51924c8bc5bad3209826fd707b4a218b2ec9fe8a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.3.1/support-annotations-25.3.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.3.1_bc35f83654a084af9dbd5dc09971ea004f344d80/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/db84efb36e97cb4d412168c4ae561b5ff27827b1/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c147bfc12797852c00de33231b3d63b0b6f49375">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b38f9c477e0203b4a97844374d37a4a4e96eda83/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/Library/Android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/constraint-layout-solver-1.0.2_534f9ec64e6836795cf5572ffc956a5aed173159/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/3ba590cb68fb06ab1911c07b15e10aed08965b43/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2fa4bed8a1213a783ee394e58924fdc1aedc298a">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_a066a7a09a218346501265fbdae412224be253f3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/19e0d26a29a5c2a15229bab064c58b1947931852/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bf481b2af4d8f89935baf75972976b5681533176">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_a657488994620289eb0e612086c7b786fe118693/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/fd4a68cdad142b456d726c7991dfbcaf08f57354/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="379a48c2da13ffb7ec7134f2c715663834357670">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_9e99e1233be3169e1fcfd8fb48bad861bacac29b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/26cef1f76c5da176f46c652c91ef66a43298bed5/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c83d8acfa2967e42e7507803cd5bc34c898f7e8a">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_3b7888cb471918246013355b8ccd0ddefe9bbef1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/7d79c159d8e06314758a1fdf1295b4ee1346025d/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="363fb5cab8e3b60b403373e02b505ee3e47d1c91">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_914f0dedafa78e4f535af20ff71ecd32a1c098e1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/7b6fcfa538b13cca1f4d141d05e8f8260c5b16b0/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ae475f56eae94a6614db527474af493d0a421271">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_efac45cba66b41bc39652b492f92a768235e8f2c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="/Users/c3rv30/android-projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_a5cddc1ff28ec1288e58165527c24fbb02cb750c/classes.dex" />
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_2b6a7f61ebb92082994c409d4faa1d8298c33620/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/c3rv30/android-projects/AprMobile/app/libs/gson-2.2.4.jar"
+        jar="/Users/c3rv30/.android/build-cache/51c2eaa3a18e4f33713cf17f8a6cea4d1c52deaa/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="20771821f96ac4854553c9b6d10a3937909f40a4">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b12aeb4c3718c6a16b1023341f90249bd034eb4b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/36a923745c12a6602c320c91b0d26828e23f320a/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2369c4a50db83637fc6a76a9572e6e3be76c193c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c334daf12acea5716acac7b382c1a961c50b0f51">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_e3ec26479fd852f32066e88d1da0a7bf33021778/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/60109e6686686b4d4b91b6e7ae3aae04a2007137/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d695dc4247690369d66c022c6d18190155c61fcd">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_fcf795c01e6bd63af11b839e5dd8255642f5ed80/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/b276cc60e2b18326bdaacee4bdbcc720a43ec5d8/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="652f51abc06a99243ca9399c13af2c6c0769c277">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e5b681e30365413021f232593420b70a269202d8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/907129aab3b13afc2552debfe44cda9954273dbb/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bbded8fa779bbe1097a9fbce22de5ccffb20bd60">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_72f6a350b4f562732511eea4bd4eac0770a2a27e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/e5b457ba9e9dc5a994fcd23fd036e418bbe9c2ea/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="95519720620b553f63afc789beba9ad582807f7c">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ba5908e7843a64a68c460a9f349f6dfcb55b3d5c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/Android-Projects/AprMobile/app/libs/gson-2.2.4.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="973e832af433b44c3ed11c426f2f390b29f3f3f8">
-        <dex dex="/Users/c3rv30/android-projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/2/gson-2.2.4_756e6165ed1b15dd8e17a2df4d844e57eb14e39f/classes.dex" />
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/2/gson-2.2.4_d648a824165fa33b2f8e19d4d70312a2005052aa/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/c3rv30/android-projects/AprMobile/app/libs/android-async-http-1.4.4.jar"
+        jar="/Users/c3rv30/.android/build-cache/f78460f858e8058540585d69889e5c90407c54f6/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d94940ddde71cc57402c78b7d8c335d61958f486">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f5bed4878ebcf6afd588fa481805a842d78d980e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/a4b4c46f8fb5cde9a9df6e0a195e3db207879bfa/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="76f1e5943cb1fc1a841880ed72af680cba8a046c">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_12b88e5806fa1e896c9a4cc8a16bad2f6051547f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/bc20400d339a5d2772b65bcd3145a2b04cd1dc68/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_08d8011e3ef30f4760a356ee7c947f441364ba64/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/76a04e0cd207d3dd1efea8d1a79491f75a664dc8/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b4fa53b1dbc43a65e9cbcbfe25f4abc47264e78c">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_04bbf22623e7c200a2146d5ff1dc6e36542b61a2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/d77f842df26c44d72d42fa7c34dadedc5979339c/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="54511008bf7d1aabd871d8d3a26781b3f2bd9617">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_3b5e4b921887e1c9ede1b34613515ce346a173ad/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/02522d0373d52d5e302f17fc57679f0962bac8fa/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e2a8dc17ff01a96c845bc06cc02dc127258f33da/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/f8dfc2a92074fe31020cae79f4d05132d87531c1/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4b70c5ad05857b8b3b2458777e1b489a96d82f05">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_94fae009ce219d2cc821f8915c711e98c2b75666/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/11c20fee3bed5eebc9a2e274392b47022d772c26/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8a572a0bd9ea324b099b1761670237bc1be8ba7b">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_35a4c274308c5fb779526194f0dec7ef79bb742f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/d5554a8f4b6ff340c1311538314fb2496bf56f73/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ec1f195979cc7f1ec94779fa16f1b10aac8aceca">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_1dbe8ee45249a00d4bf4f119e4a6b6061b38e40a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/c5597ed157030e5f43a1b11c674cfd65b1452c73/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8e5edad98e4113971e515a8d9fe89d6f95235fa9">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2f9ef7c4e2003c7f62a47af2d0bafa0f31d9060f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/581e32df833760ab7438aff9e366a1a653671601/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ca2803fcde3242d772a07eb3c4f1678ca98ab5d5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/e33641e05bc01f597be64880192363827439fde0/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d4acacbab67243d9eb026ea759aefd401d070f3e">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_6c1bcda412421519b93983ae870f2ebd9585422d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/7dce0acadf8b750c41f8c045c9c2cb75bed8bde8/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_4713508fc7348e816ae1a7487542ea7bd08561ed/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/a712385d77bbc782799c44f733293164b2e128df/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fafc89bde9dd0da1ee66bf903c129fa9a656285b">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f9e19fd413b13cfb9acef95a3a55bf5533298723/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/0cfaa71a6691eaf9e61c3e03043be5229b8a2c63/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7057b89327260d70337f4913f933c78bb56ecd69">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f16b4e1777e9999ff3adfc51e343550c13b16ed4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/d360f30c24585ced1bc5ab11d5e9a57d573ccaa3/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="90095b555b72205db6f9b93aca3cb9978d1e3344">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_4ea897d2ce5fdcc8f34862888d52c7da75823049/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/0c5800f589d2e008f10f246a141e67ee82d81b7a/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3013ffee567202ddab82286ac45b28fcb1e7926a">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_4c215a4eb7303bd0f4d6c293570a8a6316892eb7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/6e5f956b0b5114193b6e61bad749e8d36fbf01f0/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3e607ca6e04e85741fa979402b37eb552b811641">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_813fe186e2f672b4b9653e2602c904407fd67409/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/Android-Projects/AprMobile/app/libs/android-async-http-1.4.4.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="3bae85a076241828810bf8fbcc12e5891d5fc34c">
-        <dex dex="/Users/c3rv30/android-projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/2/android-async-http-1.4.4_2012b972e59f340e7881741dfd7a9a198aa81820/classes.dex" />
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/2/android-async-http-1.4.4_6610b62f675208eb4bd4c74ef3a6fdcb41ac638b/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/c3rv30/android-projects/AprMobile/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jar="/Users/c3rv30/.android/build-cache/4766200aec7c20b4d83f452a3fbd007a04d30ac6/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="77d1ca1baae2af0d313f56f757117e5f1fd38adb">
-        <dex dex="/Users/c3rv30/android-projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_446e123d637d6baecb7f55e946743e9e1e11daf9/classes.dex" />
+        sha1="cc1683c11baff90e41b9a6bd2d0861a35b2c5735">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b4c5a5bd4c207c4e2ce0a6dd906cb3d21e664f15/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/b879123c32f9c3b4e789ee87172c4f76ca889a23/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="de123ff49c41c304ca4bc7eb5600d294984eaf5f">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_02cc569a0096a1ff835a7b0ecf3769cb774ff11a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/1ea0e62570710329c6cfadd5805755456e01e9b9/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7ce552453962f4f725f7c206725c4c5b32f1d6c0">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f57358969c1ce57dd0ba13d529d9b47f677f3616/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/83bbe357e91cc85fe8fd6af6f474abec5b65d407/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7f21fe29ab841f25f937bdb518862fc8d967a49d">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d5e6843e309af3759127acf19a0e1f7e859a466c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/c23ac4926c39141516dd181e02a521237dc614bf/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c56893f4714457bd4ad9f511e2731eba53f7d751">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2386b01b9a642c8c2cf6912de21f4578c683d7da/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/32f914470d9d9e4c7165f26752b3672703ddb9c6/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e00b71dcf2fbecaf59b0d487d11839522dd7863d">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_5230b57cf927258d4c1cc586cd191bdfbaa2aa0c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/d7099db756216a1d8320c22b7586d599006ef538/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0dc1af4997434691ade16df4be64d49d1bd1fef5">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b547ca7a29652afa63d2f35af1616e5751b3f70d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/d1fcddf5b56828b44358110fd55236b1317c71e0/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="da7ad43ce7be1d12ca7a76eff6355459f4db77d6">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_3cf6b7df4b55327a731c351f01e0084db31272b9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/f1132c1226d2596e2118b64c7054591e4eb18bdb/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_73c907e0c310d102383d94fb87d394a0f2e517a7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/12c55d66bb1a290405f7d1c5432a1ba29b8cb211/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="cb238c479cbda3db7cef9a99c11e5fd4851445fe">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2711ad363ca25186439dba2db0fb0ad057fb5311/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/c22c16634aa9f4da935420705dbc0f5b9b22752d/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7ae2522527c30bca3c57d1fa4617b01ff5e1de79">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_4fbd8b6f4c06be1b68edeb1b423861aacff1c376/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/0ac4e5849ee9ea1b331a6e8c431dd075cc622df4/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="95955cf3055a3384ba1bfc30c6da82b92df74e0a">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d80b8a3cc5e4ceefe29ccf8ed41e4c78e6ba3de9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/88fe6b3cd44f7929406430be39fc8220113e6a22/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_48bf29019275dd687ef319cd08dff29fabea9f98/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/66dba9b3cdcf1a3cd15da4d616859010666fb427/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1ac97d7aa6a93902b6b0471fabf6525970d21f56">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ce7c9bdebfa17d65989fc4d89010e7b42bccce3e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/9bf3595af5cb6faef62b2efbd404734bd30c41df/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b3a62efb719332a7529087ff0bcd9777504f6b31/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/545252008c92668a46eacebd2d09d2456793e061/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c16e0d5f6efb0cdae98b38fe9a48d5236ea136d0">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_80960ffa1938b0ff01d7ff169c3dd3c4ecd32eb3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/b94cdf3e8e9364dfda5ba438cb84661e25d94bde/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3ab3ca52f409de1922c790aaca1be80dea626934">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_1c19dc8cafd3a72cddbe5bfb9a6eaa71447dd908/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/c3rv30/.android/build-cache/07bc6a78f30d0a12456ac8e72bbce6a05575c0c7/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5bd38c72db0a3b4140d38b7fb527e78e46126d79">
+        <dex dex="/Users/c3rv30/Android-Projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_97b51cf3a500ddac2c2d0a153710cb22289da37d/classes.dex" />
     </item>
 
 </items>

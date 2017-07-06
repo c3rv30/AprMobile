@@ -1,50 +1,84 @@
 package com.icg.aprmobile;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+
 import java.util.Calendar;
 import java.util.HashMap;
 
 import DB.DBController;
-import android.content.Context;
-import static java.security.AccessController.getContext;
+
+
 
 /**
  * Created by c3rv30 on 6/23/17.
  */
 
-public class form_data extends AppCompatActivity {
+public class form_data extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener{
     // DB Class to perform DB related operations
-    DBController controller = new DBController(this);
+    private DBController controller = new DBController(this);
     // Location Class
-    LocationController location = new LocationController();
+    private LocationController location = new LocationController();
+    // Secure ID
+    //private SecureID secureId = new SecureID();
     private java.util.Calendar calendar;
     private TextView dateView;
     private int year, month, day;
-    
-    private String android_id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-    String androidId = Settings.Secure.getString(getContentResolver(),Settings.Secure.ANDROID_ID);
 
-    TextView txtnom;
-    TextView txtsector;
-    TextView txtnrosocio;
-    TextView txtFecUltLec;
-    TextView txtvalLecAnt;
-    //TextView txtperUltLec;
-    TextView txtnroMedi;
-    EditText txtvalUltLec;
-    EditText txtobvTxt;
+    // GeoLocation
+    private static final int MY_PERMISSION_REQUEST_CODE = 7171;
+    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 7172;
+
+    private boolean mRequestingLocationUpdates = false;
+    private LocationRequest mLocationRequest;
+    private GoogleApiClient mGoogleApiClient;
+    private Location mLastLocation;
+
+    private static int UPDATE_INTERVAL = 5000; // SEC
+    private static int FATEST_INTERVAL = 3000; // SEC
+    private static int DISPLACEMENT = 10; // METERS
+
+    TextView txtnom, txtsector, txtnrosocio, txtFecUltLec, txtvalLecAnt, txtnroMedi, txtperUltLec;
+    EditText txtvalUltLec, txtobvTxt;
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode){
+            case MY_PERMISSION_REQUEST_CODE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    if (checkPlayServices())
+                        buildGoogleApiClient();
+                        createLocationRequest();
+                }
+                break;
+        }
+    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,45 +86,34 @@ public class form_data extends AppCompatActivity {
         setContentView(R.layout.activity_form_data_new);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-
         Bundle mBundle = getIntent().getExtras();
         String nroMed = (String) mBundle.get("cod_medidor");
+        //String id = secureId.generateID();
+        String id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
 
+        Toast.makeText(getApplicationContext(), "ID: "+id, Toast.LENGTH_LONG).show();
 
         txtnom = (TextView) findViewById(R.id.nom);
         txtnrosocio = (TextView) findViewById(R.id.nrosocio);
         txtsector = (TextView) findViewById(R.id.sector);
         txtFecUltLec = (TextView) findViewById(R.id.fecUltLec);
         txtvalLecAnt = (TextView) findViewById(R.id.valLecAnt);
-        //txtperUltLec = (TextView) findViewById(R.id.perNvaLec);
         txtnroMedi = (TextView) findViewById(R.id.nroMedi);
         txtvalUltLec = (EditText) findViewById(R.id.valUltLec);
         txtobvTxt = (EditText) findViewById(R.id.obvTxt);
 
         txtnroMedi.setText(nroMed);
-
         HashMap<String, String> map = controller.getClientData(nroMed);
 
-        String nom = map.get("nom");
-        String nro_socio = map.get("nro_socio");
-        String lec_ant  = map.get("lec_ant");
-        String lec_act = map.get("lec_act");
-        String per_ult_lect = map.get("per_ult_lect");
-        String per_lec_act = map.get("per_lec_act");
-        String sector = map.get("sector");
-        String medi = map.get("medi");
-        String obv = map.get("observ");
-
-        txtnom.setText(nom);
-        txtnrosocio.setText(nro_socio);
-        txtvalLecAnt.setText(lec_ant);
-        txtvalUltLec.setText(lec_act);
-        txtFecUltLec.setText(per_ult_lect);
-        //txtperUltLec.setText(per_lec_act);
-        txtsector.setText(sector);
-        txtnroMedi.setText(medi);
-        txtobvTxt.setText(obv);
+        txtnom.setText(map.get("nom"));
+        txtnrosocio.setText(map.get("nro_socio"));
+        txtvalLecAnt.setText(map.get("lec_ant"));
+        txtvalUltLec.setText(map.get("lec_act"));
+        txtFecUltLec.setText(map.get("per_ult_lect"));
+        txtsector.setText(map.get("sector"));
+        txtnroMedi.setText(map.get("medi"));
+        //txtobvTxt.setText(map.get("observ"));
+        txtobvTxt.setText("");
 
         dateView = (TextView)findViewById(R.id.perNvaLec);
         calendar = Calendar.getInstance();
@@ -98,6 +121,23 @@ public class form_data extends AppCompatActivity {
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
         showDate(year, month+1, day);
+
+
+        if (android.support.v4.app.ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && android.support.v4.app.ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            // Run-tome request permission
+            android.support.v4.app.ActivityCompat.requestPermissions(this, new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+            }, MY_PERMISSION_REQUEST_CODE);
+        }else{
+            if (checkPlayServices()){
+                buildGoogleApiClient();
+                createLocationRequest();
+            }
+        }
+        displayLocation();
+
 
     }
 
@@ -117,8 +157,7 @@ public class form_data extends AppCompatActivity {
         longi = coordinates.get("long");
         Log.d("Cordenada", "Latitud "+ lati);
         Log.d("Cordenada", "Longitud "+ longi);*/
-
-
+        
         controller.updateClients(nroMed, fecAct, lecAct, obsrv);
 
         Toast.makeText(getApplicationContext(), "Datos Actualizados!!", Toast.LENGTH_LONG).show();
@@ -130,7 +169,6 @@ public class form_data extends AppCompatActivity {
 
 
 
-    @SuppressWarnings("deprecation")
     public void setDate(View view){
         showDialog(999);
         //Toast.makeText(getApplicationContext(), "ca", Toast.LENGTH_SHORT).show();
@@ -167,8 +205,147 @@ public class form_data extends AppCompatActivity {
         String nroMed;
         nroMed = txtnroMedi.getText().toString();
         Intent objIntent = new Intent(getApplicationContext(), form_data.class);
-        objIntent.putExtra("nro_med", nroMed.toString());
+        objIntent.putExtra("nro_med", nroMed);
         startActivity(objIntent);
         finish();
     }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        checkPlayServices();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(mGoogleApiClient != null)
+            mGoogleApiClient.connect();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+        if (mGoogleApiClient != null)
+            mGoogleApiClient.disconnect();
+    }
+
+    private void tooglePeriodLocationUpdates(){
+        if (!mRequestingLocationUpdates){
+            //btnLocationUpdates.setText("Stop location update");
+            mRequestingLocationUpdates = true;
+            startLocationUpdates();
+        }else {
+            //btnLocationUpdates.setText("Start location update");
+            mRequestingLocationUpdates = false;
+            stopLocationUpdates();
+        }
+    }
+
+    private void displayLocation(){
+        if (android.support.v4.app.ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && android.support.v4.app.ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        if (mLastLocation != null){
+            double latitude = mLastLocation.getLatitude();
+            double longitude = mLastLocation.getLongitude();
+            //txtCoordinates.setText(latitude + " / " + longitude);
+            txtobvTxt.setText("Latitude :" + latitude + " --- " + "Longitude :" + longitude);
+        } else {
+            //txtCoordinates.setText("Couldn't get the location. Make sure location is enable on the device");
+            Toast.makeText(getApplicationContext(), "Couldn't get the location. Make sure location is enable on the device", Toast.LENGTH_LONG).show();
+        }
+    }
+
+
+    private void createLocationRequest(){
+        mLocationRequest = new LocationRequest();
+        mLocationRequest.setInterval(UPDATE_INTERVAL);
+        mLocationRequest.setFastestInterval(FATEST_INTERVAL);
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        mLocationRequest.setSmallestDisplacement(DISPLACEMENT);
+    }
+
+    private synchronized void buildGoogleApiClient(){
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API).build();
+        // Fix first time run app if permission doesn't grant yet so can't get anything
+        mGoogleApiClient.connect();
+    }
+
+    private boolean checkPlayServices(){
+        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+        if(resultCode != ConnectionResult.SUCCESS){
+            if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)){
+                GooglePlayServicesUtil.getErrorDialog(resultCode, this, PLAY_SERVICES_RESOLUTION_REQUEST).show();
+            }else{
+                Toast.makeText(getApplicationContext(), "This device is not supported", Toast.LENGTH_LONG).show();
+                finish();
+            }
+            return false;
+        }
+        return true;
+    }
+
+    private void startLocationUpdates(){
+        if (android.support.v4.app.ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && android.support.v4.app.ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+
+    }
+
+    private void stopLocationUpdates(){
+        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+        displayLocation();
+        if(mRequestingLocationUpdates)
+            startLocationUpdates();
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        mGoogleApiClient.connect();
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        mLastLocation = location;
+        displayLocation();
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
