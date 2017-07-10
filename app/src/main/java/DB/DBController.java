@@ -35,6 +35,8 @@ public class DBController extends SQLiteOpenHelper {
 
     private static final String KEY_PER_LEC_ACTUAL = "per_lec_act";
     private static final String KEY_OBSERVACION = "observ";
+    private static final String KEY_LATITUTE = "latitude";
+    private static final String KEY_LONGITUDE = "longitude";
 
     public DBController(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -52,6 +54,8 @@ public class DBController extends SQLiteOpenHelper {
                 + KEY_PER_LEC_ACTUAL + " TEXT,"
                 + KEY_SECTOR + " TEXT,"
                 + KEY_NRO_MEDIDOR + " TEXT,"
+                + KEY_LATITUTE + " TEXT,"
+                + KEY_LONGITUDE + " TEXT,"
                 + KEY_OBSERVACION + " TEXT" + ")";
         // FALTA PERIODO ACTUAL
         db.execSQL(CREATE_CLIENTES_TABLE);
@@ -186,11 +190,13 @@ public class DBController extends SQLiteOpenHelper {
     }
 
 
-    public void updateClients(String nroMed, String fecAct, String lecAct, String obsrv){
+    public void updateClients(String nroMed, String fecAct, String lecAct, String obsrv, String lati, String longi){
         SQLiteDatabase database = this.getWritableDatabase();
         String updateQuery = "Update "+TABLE_CLIENTES+" set "
                 +KEY_PER_LEC_ACTUAL+" = '"+ fecAct +"', "
                 +KEY_LEC_ACTUAL+" = '"+ lecAct +"', "
+                +KEY_LATITUTE+" = '"+ lati +"', "
+                +KEY_LONGITUDE+" = '"+ longi +"', "
                 +KEY_OBSERVACION+" = '"+ obsrv +"' WHERE "
                 +KEY_NRO_MEDIDOR+"='"+nroMed+"'";
         Log.d("query",updateQuery);
@@ -212,16 +218,16 @@ public class DBController extends SQLiteOpenHelper {
      * Compose JSON out of SQLite records
      * @return
      */
-    public String composeJSONfromSQLite(){
-        String lati, longi;
-        lati = "0";
-        longi = "0";
+    public String composeJSONfromSQLite(String androidID){
         ArrayList<HashMap<String, String>> wordList;
         wordList = new ArrayList<>();
         String selectQuery = "SELECT "+KEY_NRO_SOCIO+"," +
                 ""+KEY_LEC_ACTUAL+"," +
                 ""+KEY_PER_LEC_ACTUAL+"," +
-                ""+KEY_NRO_MEDIDOR+"" +
+                ""+KEY_NRO_MEDIDOR+"," +
+                ""+KEY_OBSERVACION+"," +
+                ""+KEY_LATITUTE+"," +
+                ""+KEY_LONGITUDE+"" +
                 " FROM " +TABLE_CLIENTES;
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.rawQuery(selectQuery, null);
@@ -232,8 +238,10 @@ public class DBController extends SQLiteOpenHelper {
                 map.put("lec_act", cursor.getString(1));
                 map.put("per_lec_act", cursor.getString(2));
                 map.put("medi", cursor.getString(3));
-                map.put("latitud", lati);
-                map.put("longitud", longi);
+                map.put("observ", cursor.getString(4));
+                map.put("latitud", cursor.getString(5));
+                map.put("longitud", cursor.getString(6));
+                map.put("id_device", androidID);
                 wordList.add(map);
             } while (cursor.moveToNext());
         }

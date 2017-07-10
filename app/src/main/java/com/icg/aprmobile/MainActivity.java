@@ -2,6 +2,7 @@ package com.icg.aprmobile;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     DBController controller = new DBController(this);
     // Progres Dialog Object
     ProgressDialog prgDialog;
+    // Secure androidID
+    private String id_android;
     HashMap<String, String> queryValues;
     ListView myList;
 
@@ -41,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        id_android = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
         myList = (ListView) findViewById(android.R.id.list);
         //myList.setBackgroundColor(Color.CYAN);
         // Get User records from SQLite DB
@@ -84,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize Progress Dialog properties
         prgDialog = new ProgressDialog(this);
-        prgDialog.setMessage("Transferring Data from Remote MySQL DB and Syncing SQLite. Please wait...");
+        prgDialog.setMessage("Transfiriendo datos desde el servidor remoto. Espere Porfavor...");
         prgDialog.setCancelable(false);
     }
 
@@ -124,13 +128,12 @@ public class MainActivity extends AppCompatActivity {
                 // TODO Auto-generated method stub
                 // Hide ProgressBar
                 prgDialog.hide();
-                if (statusCode == 404) {
-                    Toast.makeText(getApplicationContext(), "Requested resource not found", Toast.LENGTH_LONG).show();
-                } else if (statusCode == 500) {
-                    Toast.makeText(getApplicationContext(), "Something went wrong at server end", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Unexpected Error occcured! [Most common Error: Device might not be connected to Internet]",
-                            Toast.LENGTH_LONG).show();
+                if(statusCode == 404){
+                    Toast.makeText(getApplicationContext(), "No se encontro el recurso solicitado", Toast.LENGTH_LONG).show();
+                }else if(statusCode == 500){
+                    Toast.makeText(getApplicationContext(), "Problemas con el servidor remoto", Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(getApplicationContext(), "Error inesperado! [Error mas comun: Dispositivo sin conexion a internet ]", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -206,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Throwable error, String content) {
-                Toast.makeText(getApplicationContext(), "Error Occured", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Ocurrio un Error", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -220,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
         if(userList.size()!=0){
             //if(controller.dbSyncCount() != 0){
                 prgDialog.show();
-                params.put("usersJSON", controller.composeJSONfromSQLite());
+                params.put("usersJSON", controller.composeJSONfromSQLite(id_android));
 
                 client.post("http://www.informaticacasagrande.cl/aprweb/apr/lecturas/leerjson.asp",params ,new AsyncHttpResponseHandler() {
                     //http://www.informaticacasagrande.cl/aprweb/apr/lecturas/leerjson.asp
@@ -253,9 +256,9 @@ public class MainActivity extends AppCompatActivity {
                         // TODO Auto-generated method stub
                         prgDialog.hide();
                         if(statusCode == 404){
-                            Toast.makeText(getApplicationContext(), "Requested resource not found", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "No se encontro el recurso solicitado", Toast.LENGTH_LONG).show();
                         }else if(statusCode == 500){
-                            Toast.makeText(getApplicationContext(), "Something went wrong at server end", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Problemas con el servidor remoto", Toast.LENGTH_LONG).show();
                         }else{
                             Toast.makeText(getApplicationContext(), "Error inesperado! [Error mas comun: Dispositivo sin conexion a internet ]", Toast.LENGTH_LONG).show();
                         }

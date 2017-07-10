@@ -7,10 +7,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 
 import android.view.View;
@@ -30,7 +28,6 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 import DB.DBController;
-
 
 
 /**
@@ -61,7 +58,7 @@ public class form_data extends AppCompatActivity implements GoogleApiClient.Conn
     private static int FATEST_INTERVAL = 3000; // SEC
     private static int DISPLACEMENT = 10; // METERS
 
-    TextView txtnom, txtsector, txtnrosocio, txtFecUltLec, txtvalLecAnt, txtnroMedi, txtperUltLec;
+    TextView txtnom, txtsector, txtnrosocio, txtFecUltLec, txtvalLecAnt, txtnroMedi, txtperUltLec, txtLongitude, txtLatitude;
     EditText txtvalUltLec, txtobvTxt;
 
 
@@ -88,19 +85,18 @@ public class form_data extends AppCompatActivity implements GoogleApiClient.Conn
 
         Bundle mBundle = getIntent().getExtras();
         String nroMed = (String) mBundle.get("cod_medidor");
-        //String id = secureId.generateID();
-        String id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-
-        Toast.makeText(getApplicationContext(), "ID: "+id, Toast.LENGTH_LONG).show();
 
         txtnom = (TextView) findViewById(R.id.nom);
         txtnrosocio = (TextView) findViewById(R.id.nrosocio);
         txtsector = (TextView) findViewById(R.id.sector);
         txtFecUltLec = (TextView) findViewById(R.id.fecUltLec);
         txtvalLecAnt = (TextView) findViewById(R.id.valLecAnt);
-        txtnroMedi = (TextView) findViewById(R.id.nroMedi);
+        txtnroMedi = (TextView) findViewById(R.id.medi);
         txtvalUltLec = (EditText) findViewById(R.id.valUltLec);
         txtobvTxt = (EditText) findViewById(R.id.obvTxt);
+
+        txtLatitude = (TextView) findViewById(R.id.latitude);
+        txtLongitude = (TextView) findViewById(R.id.longitude);
 
         txtnroMedi.setText(nroMed);
         HashMap<String, String> map = controller.getClientData(nroMed);
@@ -112,8 +108,7 @@ public class form_data extends AppCompatActivity implements GoogleApiClient.Conn
         txtFecUltLec.setText(map.get("per_ult_lect"));
         txtsector.setText(map.get("sector"));
         txtnroMedi.setText(map.get("medi"));
-        //txtobvTxt.setText(map.get("observ"));
-        txtobvTxt.setText("");
+        txtobvTxt.setText(map.get("observ"));
 
         dateView = (TextView)findViewById(R.id.perNvaLec);
         calendar = Calendar.getInstance();
@@ -136,9 +131,6 @@ public class form_data extends AppCompatActivity implements GoogleApiClient.Conn
                 createLocationRequest();
             }
         }
-        displayLocation();
-
-
     }
 
     public void updateDB(View v){
@@ -146,19 +138,24 @@ public class form_data extends AppCompatActivity implements GoogleApiClient.Conn
     }
 
     public void updateCli(){
-        String nroMed, fecAct, lecAct, obsrv;
+        displayLocation();
+        String nroMed, fecAct, lecAct, obsrv,lati,longi,androidID;
         nroMed = txtnroMedi.getText().toString();
         fecAct = dateView.getText().toString();
         lecAct = txtvalUltLec.getText().toString();
         obsrv = txtobvTxt.getText().toString();
-/*        String lati, longi;
+        lati = txtLatitude.getText().toString();
+        longi = txtLongitude.getText().toString();
+        /*
+        String lati, longi;
         HashMap<String, String> coordinates = location.displayLocation();
         lati = coordinates.get("lat");
         longi = coordinates.get("long");
         Log.d("Cordenada", "Latitud "+ lati);
-        Log.d("Cordenada", "Longitud "+ longi);*/
+        Log.d("Cordenada", "Longitud "+ longi);
+        */
         
-        controller.updateClients(nroMed, fecAct, lecAct, obsrv);
+        controller.updateClients(nroMed, fecAct, lecAct, obsrv, lati, longi);
 
         Toast.makeText(getApplicationContext(), "Datos Actualizados!!", Toast.LENGTH_LONG).show();
         reloadActivity();
@@ -251,13 +248,15 @@ public class form_data extends AppCompatActivity implements GoogleApiClient.Conn
         }
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         if (mLastLocation != null){
-            double latitude = mLastLocation.getLatitude();
-            double longitude = mLastLocation.getLongitude();
+            String latitude = Double.toString(mLastLocation.getLatitude());
+            String longitude = Double.toString(mLastLocation.getLongitude());
+
             //txtCoordinates.setText(latitude + " / " + longitude);
-            txtobvTxt.setText("Latitude :" + latitude + " --- " + "Longitude :" + longitude);
+            txtLatitude.setText(latitude);
+            txtLongitude.setText(longitude);
         } else {
             //txtCoordinates.setText("Couldn't get the location. Make sure location is enable on the device");
-            Toast.makeText(getApplicationContext(), "Couldn't get the location. Make sure location is enable on the device", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "No se puede obtener la localizacion. Asegurese de que la localizacion esta activada en el dispositivo", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -285,7 +284,7 @@ public class form_data extends AppCompatActivity implements GoogleApiClient.Conn
             if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)){
                 GooglePlayServicesUtil.getErrorDialog(resultCode, this, PLAY_SERVICES_RESOLUTION_REQUEST).show();
             }else{
-                Toast.makeText(getApplicationContext(), "This device is not supported", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Este Dispositivo no es compatible.", Toast.LENGTH_LONG).show();
                 finish();
             }
             return false;
@@ -301,7 +300,6 @@ public class form_data extends AppCompatActivity implements GoogleApiClient.Conn
             return;
         }
         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
-
     }
 
     private void stopLocationUpdates(){
@@ -332,20 +330,3 @@ public class form_data extends AppCompatActivity implements GoogleApiClient.Conn
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
