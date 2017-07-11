@@ -30,6 +30,12 @@
         -->
 
     <TextView
+        android:id="@+id/fec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
+    <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,8 +64,6 @@
         android:textSize="17sp"
         android:textStyle="bold" />
 
-
-
     <ImageView
         android:id="@+id/item_info"
         android:layout_width="wrap_content"
@@ -72,8 +76,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true">
-
-
     </LinearLayout>
 
 </RelativeLayout>

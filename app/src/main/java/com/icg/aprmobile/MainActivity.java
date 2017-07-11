@@ -45,7 +45,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         id_android = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+
+
+
         myList = (ListView) findViewById(android.R.id.list);
+
+
+
         //myList.setBackgroundColor(Color.CYAN);
         // Get User records from SQLite DB
         ArrayList<HashMap<String, String>> userList = controller.getAllUsersLec();
@@ -56,8 +62,17 @@ public class MainActivity extends AppCompatActivity {
         //Cursor cursor = controller.getNroMed("medi");
 
         Toast.makeText(getApplicationContext(), "Clientes : "+userList.size(), Toast.LENGTH_LONG).show();
-        // If users exists in SQLite DB
 
+        // If users exists in SQLite DB
+        if (userList.size() != 0) {
+            // Set the User Array list in ListView
+            myList.setAdapter(new CustomListAdapter(MainActivity.this, userList));
+        }
+
+
+
+
+/*        // If users exists in SQLite DB
         if (userList.size() != 0) {
             // Set the User Array list in ListView
             ListAdapter adapter = new SimpleAdapter(MainActivity.this, userList, R.layout.activity_view_user_entry,
@@ -65,13 +80,13 @@ public class MainActivity extends AppCompatActivity {
                     new int[] { R.id.name, R.id.dir, R.id.cod_medidor });
             myList.setAdapter(adapter);
 
-            /*
+            *//*
                 // Solo Codigo a Listar
                 ListAdapter adap = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, userList);
                 myList.setAdapter(adap);
-            */
+            *//*
 
-        }
+        }*/
 
         myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

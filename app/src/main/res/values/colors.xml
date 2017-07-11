@@ -5,4 +5,9 @@
     <color name="colorAccent">#FF4081</color>
     <!-- BackgroundColor SplashScreen-->
     <color name="backgronudColorSplash">#FFFFFF</color>
+
+    <!-- Colors ListView -->
+    <color name="updatedClient">#33CC33</color>
+    <color name="unUpdatedClient">#FFFFFF</color>
+
 </resources>

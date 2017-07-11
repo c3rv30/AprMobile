@@ -1,25 +1,32 @@
 package com.icg.aprmobile;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static android.R.drawable.ic_dialog_info;
+import static android.app.PendingIntent.getActivity;
+import static android.app.PendingIntent.writePendingIntentOrNullToParcel;
+import static android.support.v4.content.ContextCompat.getColor;
 
 /**
  * Created by c3rv30 on 7/6/17.
  */
 
-public class CustomListAdapter extends BaseAdapter {
+
+class CustomListAdapter extends BaseAdapter {
 
     private Context mContext;
     private ArrayList<HashMap<String, String>> userList;
 
-    public CustomListAdapter(Context mContext, ArrayList<HashMap<String, String>> userList){
+    CustomListAdapter(Context mContext, ArrayList<HashMap<String, String>> userList){
         this.mContext = mContext;
         this.userList = userList;
     }
@@ -78,15 +85,31 @@ public class CustomListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         //Holder holder = null;
         View v = convertView;
-
-        if (convertView == null){
-
-        }else {
-
+        if (v == null){
+            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            v = inflater.inflate(R.layout.activity_view_user_entry, null);
         }
 
+        TextView nom = (TextView) v.findViewById(R.id.name);
+        TextView dir = (TextView) v.findViewById(R.id.dir);
+        TextView medi = (TextView) v.findViewById(R.id.cod_medidor);
+        //TextView lecAct = (TextView) v.findViewById(R.id.fec);
+        ImageView info = (ImageView) v.findViewById(R.id.item_info);
 
-        return null;
+        String lecAct = userList.get(position).get("lec_act");
+        String med = userList.get(position).get("medi");
+
+        if (med.equals("10-19013")){
+            v.setBackgroundColor(getColor(mContext, R.color.updatedClient));
+        }else{
+            v.setBackgroundColor(getColor(mContext, R.color.unUpdatedClient));
+        }
+
+        nom.setText(userList.get(position).get("nom"));
+        dir.setText(userList.get(position).get("sector"));
+        medi.setText(userList.get(position).get("medi"));
+        info.setImageResource(ic_dialog_info);
+        return v;
     }
 }
 
