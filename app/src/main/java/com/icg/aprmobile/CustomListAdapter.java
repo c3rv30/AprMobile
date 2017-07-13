@@ -93,13 +93,12 @@ class CustomListAdapter extends BaseAdapter {
         TextView nom = (TextView) v.findViewById(R.id.name);
         TextView dir = (TextView) v.findViewById(R.id.dir);
         TextView medi = (TextView) v.findViewById(R.id.cod_medidor);
-        //TextView lecAct = (TextView) v.findViewById(R.id.fec);
         ImageView info = (ImageView) v.findViewById(R.id.item_info);
 
         String lecAct = userList.get(position).get("lec_act");
         String med = userList.get(position).get("medi");
 
-        if (med.equals("10-19013")){
+        if (lecAct == null){
             v.setBackgroundColor(getColor(mContext, R.color.updatedClient));
         }else{
             v.setBackgroundColor(getColor(mContext, R.color.unUpdatedClient));

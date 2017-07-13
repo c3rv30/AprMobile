@@ -1,14 +1,17 @@
 package com.icg.aprmobile;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
 import android.view.View;
@@ -18,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -27,6 +31,7 @@ import com.google.android.gms.location.LocationServices;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.logging.Logger;
 
 import DB.DBController;
 
@@ -62,77 +67,98 @@ public class form_data extends AppCompatActivity implements GoogleApiClient.Conn
     TextView txtnom, txtsector, txtnrosocio, txtFecUltLec, txtvalLecAnt, txtnroMedi, txtperUltLec, txtLongitude, txtLatitude;
     EditText txtvalUltLec, txtobvTxt;
 
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode){
+        switch (requestCode) {
             case MY_PERMISSION_REQUEST_CODE:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     if (checkPlayServices())
                         buildGoogleApiClient();
                         createLocationRequest();
+                    break;
                 }
-                break;
         }
     }
+
 
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_form_data_new);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    public void onCreate(Bundle savedInstanceState){
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_form_data_new);
 
-        Bundle mBundle = getIntent().getExtras();
-        String nroMed = (String) mBundle.get("cod_medidor");
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        txtnom = (TextView) findViewById(R.id.nom);
-        txtnrosocio = (TextView) findViewById(R.id.nrosocio);
-        txtsector = (TextView) findViewById(R.id.sector);
-        txtFecUltLec = (TextView) findViewById(R.id.fecUltLec);
-        txtvalLecAnt = (TextView) findViewById(R.id.valLecAnt);
-        txtnroMedi = (TextView) findViewById(R.id.medi);
-        txtvalUltLec = (EditText) findViewById(R.id.valUltLec);
-        txtobvTxt = (EditText) findViewById(R.id.obvTxt);
-
-        txtLatitude = (TextView) findViewById(R.id.latitude);
-        txtLongitude = (TextView) findViewById(R.id.longitude);
-
-        txtnroMedi.setText(nroMed);
-        HashMap<String, String> map = controller.getClientData(nroMed);
-
-        txtnom.setText(map.get("nom"));
-        txtnrosocio.setText(map.get("nro_socio"));
-        txtvalLecAnt.setText(map.get("lec_ant"));
-        txtvalUltLec.setText(map.get("lec_act"));
-        txtFecUltLec.setText(map.get("per_ult_lect"));
-        txtsector.setText(map.get("sector"));
-        txtnroMedi.setText(map.get("medi"));
-        txtobvTxt.setText(map.get("observ"));
-
-        dateView = (TextView)findViewById(R.id.perNvaLec);
-        calendar = Calendar.getInstance();
-        year = calendar.get(Calendar.YEAR);
-        month = calendar.get(Calendar.MONTH);
-        day = calendar.get(Calendar.DAY_OF_MONTH);
-        showDate(year, month+1, day);
-
-
-        if (android.support.v4.app.ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && android.support.v4.app.ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-            // Run-tome request permission
-            android.support.v4.app.ActivityCompat.requestPermissions(this, new String[]{
-                    Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-            }, MY_PERMISSION_REQUEST_CODE);
-        }else{
-            if (checkPlayServices()){
-                buildGoogleApiClient();
-                createLocationRequest();
+                getSupportActionBar().setLogo(R.mipmap.ic_launcher);
+                getSupportActionBar().setDisplayUseLogoEnabled(true);
             }
+
+            Bundle mBundle = getIntent().getExtras();
+            String nroMed = (String) mBundle.get("cod_medidor");
+
+            txtnom = (TextView) findViewById(R.id.nom);
+            txtnrosocio = (TextView) findViewById(R.id.nrosocio);
+            txtsector = (TextView) findViewById(R.id.sector);
+            txtFecUltLec = (TextView) findViewById(R.id.fecUltLec);
+            txtvalLecAnt = (TextView) findViewById(R.id.valLecAnt);
+            txtnroMedi = (TextView) findViewById(R.id.medi);
+            txtvalUltLec = (EditText) findViewById(R.id.valUltLec);
+            txtobvTxt = (EditText) findViewById(R.id.obvTxt);
+
+            txtLatitude = (TextView) findViewById(R.id.latitude);
+            txtLongitude = (TextView) findViewById(R.id.longitude);
+
+            txtnroMedi.setText(nroMed);
+            HashMap<String, String> map = controller.getClientData(nroMed);
+
+            txtnom.setText(map.get("nom"));
+            txtnrosocio.setText(map.get("nro_socio"));
+            txtvalLecAnt.setText(map.get("lec_ant"));
+            txtvalUltLec.setText(map.get("lec_act"));
+            txtFecUltLec.setText(map.get("per_ult_lect"));
+            txtsector.setText(map.get("sector"));
+            txtnroMedi.setText(map.get("medi"));
+            txtobvTxt.setText(map.get("observ"));
+
+            dateView = (TextView) findViewById(R.id.perNvaLec);
+            calendar = Calendar.getInstance();
+            year = calendar.get(Calendar.YEAR);
+            month = calendar.get(Calendar.MONTH);
+            day = calendar.get(Calendar.DAY_OF_MONTH);
+            showDate(year, month + 1, day);
+
+
+            if (android.support.v4.app.ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                    && android.support.v4.app.ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // Run-tome request permission
+                android.support.v4.app.ActivityCompat.requestPermissions(this, new String[]{
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                }, MY_PERMISSION_REQUEST_CODE);
+            } else {
+                if (checkPlayServices()) {
+                    buildGoogleApiClient();
+                    createLocationRequest();
+/*            }else {
+                //Toast.makeText(getApplicationContext(), "Error de GPS y GOOGLE PLAY SERVICES", Toast.LENGTH_LONG).show();
+
+                AlertDialog alertDialog = new AlertDialog.Builder(this)
+                        .setTitle("Alerta")
+                        .setMessage("Error de GPS y GOOGLE PLAY SERVICES")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener(){
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                        }).show();
+            }*/
+                }
+            }
+
+
         }
-    }
 
     public void updateDB(View v){
         updateCli();
@@ -225,9 +251,11 @@ public class form_data extends AppCompatActivity implements GoogleApiClient.Conn
     @Override
     protected void onStop() {
         super.onStop();
-        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
-        if (mGoogleApiClient != null)
+
+        if (mGoogleApiClient != null) {
             mGoogleApiClient.disconnect();
+            //LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+        }
     }
 
     private void tooglePeriodLocationUpdates(){
@@ -279,14 +307,35 @@ public class form_data extends AppCompatActivity implements GoogleApiClient.Conn
         mGoogleApiClient.connect();
     }
 
-    private boolean checkPlayServices(){
-        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+/*    private boolean checkPlayServices(){
+        int resultCode = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this);
+        //int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
         if(resultCode != ConnectionResult.SUCCESS){
+
+            //if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)){
             if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)){
                 GooglePlayServicesUtil.getErrorDialog(resultCode, this, PLAY_SERVICES_RESOLUTION_REQUEST).show();
             }else{
                 Toast.makeText(getApplicationContext(), "Este Dispositivo no es compatible.", Toast.LENGTH_LONG).show();
                 finish();
+            }
+            return false;
+        }
+        return true;
+    }
+*/
+
+    private boolean checkPlayServices() {
+        final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
+        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (apiAvailability.isUserResolvableError(resultCode)) {
+                apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST).show();
+            } else {
+                //Logger.logE(TAG, "This device is not supported.");
+                Toast.makeText(getApplicationContext(), "Este Dispositivo no es compatible.", Toast.LENGTH_LONG).show();
+                //finish();
             }
             return false;
         }

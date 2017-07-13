@@ -34,7 +34,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="a072c9ba8a9878333c21fe8bcaa6b1caecf47faf">
+        sha1="8f7e7c3257a7c562c8662908e30e3e804958904c">
         <dex dex="/Users/c3rv30/android-projects/AprMobile/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_446e123d637d6baecb7f55e946743e9e1e11daf9/classes.dex" />
     </item>
 

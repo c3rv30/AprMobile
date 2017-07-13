@@ -72,7 +72,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginStart="8dp"
         app:layout_constraintRight_toLeftOf="@+id/guideline3"
-        android:layout_marginRight="8dp" />
+        android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp" />
 
     <TextView
         android:id="@+id/textView20"
@@ -86,7 +87,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginStart="8dp"
         app:layout_constraintRight_toLeftOf="@+id/guideline3"
-        android:layout_marginRight="8dp" />
+        android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp" />
 
     <EditText
         android:id="@+id/obvTxt"
@@ -111,7 +113,6 @@
         android:layout_width="186dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:layout_weight="0.5"
@@ -134,7 +135,6 @@
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="0dp"
         app:layout_constraintLeft_toLeftOf="@+id/guideline3" />
 
     <TextView
@@ -147,7 +147,6 @@
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="0dp"
         app:layout_constraintLeft_toLeftOf="@+id/guideline3"
         app:layout_constraintHorizontal_bias="0.0" />
 
@@ -208,7 +207,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginStart="8dp"
         app:layout_constraintRight_toLeftOf="@+id/guideline3"
-        android:layout_marginRight="8dp" />
+        android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp" />
 
     <TextView
         android:id="@+id/sector"
@@ -264,12 +264,11 @@
     <EditText
         android:id="@+id/valUltLec"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_height="67dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="6dp"
         android:layout_weight="0.5"
         android:ems="10"
         android:inputType="number"
@@ -279,7 +278,7 @@
         android:textStyle="bold"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <TextView
@@ -323,6 +322,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/guideline3"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="220dp" />
+        app:layout_constraintGuide_end="220dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="191dp" />
 
 </android.support.constraint.ConstraintLayout>

@@ -42,7 +42,6 @@ public class DBController extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_CLIENTES_TABLE = "CREATE TABLE " + TABLE_CLIENTES + "("
@@ -155,6 +154,17 @@ public class DBController extends SQLiteOpenHelper {
         cursor.close();
         //database.close();
         return usersList;
+    }
+
+    public int getRows() {
+        int rows;
+        SQLiteDatabase database = this.getReadableDatabase();
+        Cursor cursor =  database.rawQuery( "SELECT COUNT(*) FROM "+TABLE_CLIENTES+"", null );
+        cursor.moveToFirst();
+        rows = cursor.getInt(0);
+        cursor.close();
+        database.close();
+        return rows;
     }
 
 
