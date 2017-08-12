@@ -38,6 +38,8 @@ public class DBController extends SQLiteOpenHelper {
     private static final String KEY_LATITUTE = "latitude";
     private static final String KEY_LONGITUDE = "longitude";
 
+    private static final String KEY_ACT_STATE = "est_act";
+
     public DBController(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -53,9 +55,10 @@ public class DBController extends SQLiteOpenHelper {
                 + KEY_PER_LEC_ACTUAL + " TEXT,"
                 + KEY_SECTOR + " TEXT,"
                 + KEY_NRO_MEDIDOR + " TEXT,"
+                + KEY_ACT_STATE + " INTEGER,"
                 + KEY_LATITUTE + " TEXT,"
                 + KEY_LONGITUDE + " TEXT,"
-                + KEY_OBSERVACION + " TEXT" + ")";
+                + KEY_OBSERVACION + " TEXT"+")";
         // FALTA PERIODO ACTUAL
         db.execSQL(CREATE_CLIENTES_TABLE);
     }
@@ -86,6 +89,7 @@ public class DBController extends SQLiteOpenHelper {
         values.put(KEY_PER_ULT_LEC, queryValues.get("per_ult_lect"));
         values.put(KEY_SECTOR, queryValues.get("sector"));
         values.put(KEY_NRO_MEDIDOR, queryValues.get("medi"));
+        values.put(KEY_ACT_STATE, 0);
 
         // Inserting Row
         db.insert(TABLE_CLIENTES, null, values);
@@ -97,6 +101,7 @@ public class DBController extends SQLiteOpenHelper {
         ArrayList<HashMap<String, String>> usersList;
         usersList = new ArrayList<>();
         // Select All Query
+        //String selectQuery = "SELECT * FROM " + TABLE_CLIENTES + " ORDER BY " + KEY_NOMBRE + " ASC";
         String selectQuery = "SELECT * FROM " + TABLE_CLIENTES;
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.rawQuery(selectQuery, null);
@@ -168,14 +173,14 @@ public class DBController extends SQLiteOpenHelper {
     }
 
 
-
     // Get list of Users from SQLite DB as Array List
-    public HashMap<String, String> getClientData(String nroMedi) {
+    public HashMap<String, String> getClientData(String nrsoc) {
         HashMap<String, String> usersList;
         //String nroMed = nroMedi;
         usersList = new HashMap<>();
         // Select All Query
-        String selectQuery = "SELECT * FROM "+TABLE_CLIENTES+" WHERE "+KEY_NRO_MEDIDOR+"='"+nroMedi+"'";
+        //String selectQuery = "SELECT * FROM "+TABLE_CLIENTES+" WHERE "+KEY_NRO_MEDIDOR+"='"+nroMedi+"'";
+        String selectQuery = "SELECT * FROM "+TABLE_CLIENTES+" WHERE "+KEY_NRO_SOCIO+"='"+nrsoc+"'";
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.rawQuery(selectQuery, null);
         // looping through all rows and adding to list
@@ -200,7 +205,7 @@ public class DBController extends SQLiteOpenHelper {
     }
 
 
-    public void updateClients(String nroMed, String fecAct, String lecAct, String obsrv, String lati, String longi){
+    /*public void updateClients(String nroMed, String fecAct, String lecAct, String obsrv, String lati, String longi){
         SQLiteDatabase database = this.getWritableDatabase();
         String updateQuery = "Update "+TABLE_CLIENTES+" set "
                 +KEY_PER_LEC_ACTUAL+" = '"+ fecAct +"', "
@@ -209,6 +214,21 @@ public class DBController extends SQLiteOpenHelper {
                 +KEY_LONGITUDE+" = '"+ longi +"', "
                 +KEY_OBSERVACION+" = '"+ obsrv +"' WHERE "
                 +KEY_NRO_MEDIDOR+"='"+nroMed+"'";
+        Log.d("query",updateQuery);
+        database.execSQL(updateQuery);
+        database.close();
+    }*/
+
+    public void updateClients(String nroSoc, String fecAct, String lecAct, String obsrv, String lati, String longi){
+        SQLiteDatabase database = this.getWritableDatabase();
+        String updateQuery = "Update "+TABLE_CLIENTES+" set "
+                +KEY_PER_LEC_ACTUAL+" = '"+ fecAct +"', "
+                +KEY_LEC_ACTUAL+" = '"+ lecAct +"', "
+                +KEY_LATITUTE+" = '"+ lati +"', "
+                +KEY_LONGITUDE+" = '"+ longi +"', "
+                +KEY_ACT_STATE+" = 1, "
+                +KEY_OBSERVACION+" = '"+ obsrv +"' WHERE "
+                +KEY_NRO_SOCIO+"='"+nroSoc+"'";
         Log.d("query",updateQuery);
         database.execSQL(updateQuery);
         database.close();
@@ -238,7 +258,8 @@ public class DBController extends SQLiteOpenHelper {
                 ""+KEY_OBSERVACION+"," +
                 ""+KEY_LATITUTE+"," +
                 ""+KEY_LONGITUDE+"" +
-                " FROM " +TABLE_CLIENTES;
+                " FROM " +TABLE_CLIENTES +" WHERE "+KEY_ACT_STATE+"=1";
+                //" FROM " +TABLE_CLIENTES +" WEHRE '"+KEY_LEC_ACTUAL+"' !=0 OR '"+KEY_LEC_ACTUAL+"' IS NOT NULL";
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {

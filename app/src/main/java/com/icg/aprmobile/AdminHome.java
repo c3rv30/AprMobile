@@ -45,13 +45,14 @@ public class AdminHome extends AppCompatActivity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
-        id_android = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
 
-        if(getSupportActionBar() != null){
-            //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setLogo(R.mipmap.ic_launcher);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Menu Principal");
             getSupportActionBar().setDisplayUseLogoEnabled(true);
         }
+
+        id_android = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+
         // Initialize Progress Dialog properties
         prgDialog = new ProgressDialog(this);
         prgDialog.setMessage("Transfiriendo datos desde el servidor remoto. Espere Porfavor...");
@@ -98,6 +99,8 @@ public class AdminHome extends AppCompatActivity{
 
                         }
                     }).setCancelable(true).show();
+        }else {
+            syncSQLiteMySQLDB();
         }
     }
 
@@ -112,7 +115,6 @@ public class AdminHome extends AppCompatActivity{
                         public void onClick(DialogInterface dialog, int which) {
                             controller.deleteFromTableLec();
                             Toast.makeText(getApplicationContext(), "RUTA ELIMINADA", Toast.LENGTH_LONG).show();
-
                         }
                     })
                     .setNegativeButton("NO", new DialogInterface.OnClickListener() {
@@ -154,7 +156,7 @@ public class AdminHome extends AppCompatActivity{
         // Show ProgressBar
         prgDialog.show();
         // Make Http call to getusers.php
-        client.post("http://www.informaticacasagrande.cl/aprweb/apr/lecturas/app1.asp", params, new AsyncHttpResponseHandler() {
+        client.post("http://www.informaticacasagrande.cl/aprweb/apr/lecturas/app1.asp?"+"id_device="+id_android, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(String response) {
                 // Update SQLite DB with response sent by getusers.php
@@ -271,15 +273,16 @@ public class AdminHome extends AppCompatActivity{
                 public void onSuccess(String response) {
                     System.out.println(response);
                     prgDialogUp.hide();
-                    try {
+                    Toast.makeText(getApplicationContext(), "DATOS ACTUALIZADOS EN EL SERVIDOR", Toast.LENGTH_LONG).show();
+                    /*try {
                         JSONArray arr = new JSONArray(response);
                         System.out.println(arr.length());
-                            /*for(int i=0 ; i<arr.length() ; i++){
+                            *//*for(int i=0 ; i<arr.length() ; i++){
                                 JSONObject obj = (JSONObject)arr.get(i);
                                 System.out.println(obj.get("id"));
                                 System.out.println(obj.get("status"));
                                 controller.updateSyncStatus(obj.get("id").toString(),obj.get("status").toString());
-                            }*/
+                            }*//*
                         Toast.makeText(getApplicationContext(), "Sincronizacion completa!", Toast.LENGTH_LONG).show();
                     } catch (JSONException e) {
                         // TODO Auto-generated catch block
@@ -287,7 +290,8 @@ public class AdminHome extends AppCompatActivity{
                         Toast.makeText(getApplicationContext(), "OK", Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                         Log.e("Error", "Response");
-                    }
+                    }*/
+
                 }
 
                 @Override

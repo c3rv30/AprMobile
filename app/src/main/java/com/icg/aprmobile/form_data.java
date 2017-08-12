@@ -7,6 +7,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,12 +15,17 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.formats.NativeAd;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -49,7 +55,7 @@ public class form_data extends AppCompatActivity implements GoogleApiClient.Conn
     //private SecureID secureId = new SecureID();
     private java.util.Calendar calendar;
     private TextView dateView;
-    private int year, month, day;
+    private int year, month, day, hour, second;
 
     // GeoLocation
     private static final int MY_PERMISSION_REQUEST_CODE = 7171;
@@ -64,8 +70,12 @@ public class form_data extends AppCompatActivity implements GoogleApiClient.Conn
     private static int FATEST_INTERVAL = 3000; // SEC
     private static int DISPLACEMENT = 10; // METERS
 
-    TextView txtnom, txtsector, txtnrosocio, txtFecUltLec, txtvalLecAnt, txtnroMedi, txtperUltLec, txtLongitude, txtLatitude;
+    TextView txtnom, txtsector, txtnrosocio, txtFecUltLec, txtvalLecAnt, txtnroMedi, txtperUltLec, txtLongitude, txtLatitude, txtsemaforo, txtsaldo;
     EditText txtvalUltLec, txtobvTxt;
+
+    ImageView imgSem;
+
+    Button btnUpdate;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -81,22 +91,24 @@ public class form_data extends AppCompatActivity implements GoogleApiClient.Conn
         }
     }
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_form_data_new);
+            setContentView(R.layout.activity_update_screen);
 
             if (getSupportActionBar() != null) {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                getSupportActionBar().setTitle("Ingreso Lectura");
+
+                getSupportActionBar().setDisplayUseLogoEnabled(true);
 
                 getSupportActionBar().setLogo(R.mipmap.ic_launcher);
-                getSupportActionBar().setDisplayUseLogoEnabled(true);
+                getSupportActionBar().setIcon(R.mipmap.ic_launcher);
             }
 
             Bundle mBundle = getIntent().getExtras();
-            String nroMed = (String) mBundle.get("cod_medidor");
+            //String nroMed = (String) mBundle.get("cod_medidor");
+            String nrsoc = (String) mBundle.get("nrsoc");
 
             txtnom = (TextView) findViewById(R.id.nom);
             txtnrosocio = (TextView) findViewById(R.id.nrosocio);
@@ -106,12 +118,17 @@ public class form_data extends AppCompatActivity implements GoogleApiClient.Conn
             txtnroMedi = (TextView) findViewById(R.id.medi);
             txtvalUltLec = (EditText) findViewById(R.id.valUltLec);
             txtobvTxt = (EditText) findViewById(R.id.obvTxt);
+            imgSem = (ImageView) findViewById(R.id.imgSem);
+            txtsaldo = (TextView) findViewById(R.id.txtSaldo);
 
             txtLatitude = (TextView) findViewById(R.id.latitude);
             txtLongitude = (TextView) findViewById(R.id.longitude);
 
-            txtnroMedi.setText(nroMed);
-            HashMap<String, String> map = controller.getClientData(nroMed);
+            //txtnroMedi.setText(nroMed);
+            txtnrosocio.setText(nrsoc);
+
+            //HashMap<String, String> map = controller.getClientData(nroMed);
+            HashMap<String, String> map = controller.getClientData(nrsoc);
 
             txtnom.setText(map.get("nom"));
             txtnrosocio.setText(map.get("nro_socio"));
@@ -122,13 +139,22 @@ public class form_data extends AppCompatActivity implements GoogleApiClient.Conn
             txtnroMedi.setText(map.get("medi"));
             txtobvTxt.setText(map.get("observ"));
 
+            btnUpdate = (Button) findViewById(R.id.update);
+
             dateView = (TextView) findViewById(R.id.perNvaLec);
             calendar = Calendar.getInstance();
             year = calendar.get(Calendar.YEAR);
             month = calendar.get(Calendar.MONTH);
             day = calendar.get(Calendar.DAY_OF_MONTH);
-            showDate(year, month + 1, day);
+            hour = calendar.get(Calendar.HOUR);
+            second = calendar.get(Calendar.SECOND);
+            showDate(year, month + 1, day, hour, second);
 
+            txtvalUltLec.requestFocus();
+
+
+            int s = txtvalUltLec.length();
+            validLec(s);
 
             if (android.support.v4.app.ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                     && android.support.v4.app.ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -157,22 +183,96 @@ public class form_data extends AppCompatActivity implements GoogleApiClient.Conn
                 }
             }
 
+            txtvalUltLec.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    int len = s.length();
+                    validLec(len);
+                }
+            });
+
+            btnUpdate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    long valAct = Long.parseLong(txtvalUltLec.getText().toString());
+                    long valAnt = Long.parseLong(txtvalLecAnt.getText().toString());
+                    if (valAct < valAnt){
+                        //imgSem.setImageResource(R.mipmap.red);
+                        prDialog();
+                    }else if(valAct == valAnt || valAct > valAnt){
+                        //imgSem.setImageResource(R.mipmap.green);
+                        updateCli();
+                    }
+                }
+            });
         }
+
+    private void prDialog(){
+        new android.app.AlertDialog.Builder(this)
+                .setTitle("Alerta")
+                .setMessage("VALOR NO PUEDE SER MENOR A LECTURA ANTERIOR")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).show();
+    }
 
     public void updateDB(View v){
         updateCli();
     }
 
+    public void validLec(int s){
+        if (s != 0) {
+            int valAct = Integer.parseInt(txtvalUltLec.getText().toString());
+            int valAnt = Integer.parseInt(txtvalLecAnt.getText().toString());
+            if (valAct < valAnt) {
+                txtsaldo.setText("0");
+                txtsaldo.setTextColor(Color.WHITE);
+                txtsaldo.setBackgroundColor(getResources().getColor(R.color.invLec));
+                imgSem.setImageResource(R.mipmap.red);
+                btnUpdate.setEnabled(false);
+                //prDialog();
+            } else if (valAct == valAnt) {
+                txtsaldo.setText("0");
+                txtsaldo.setBackgroundColor(getResources().getColor(R.color.validLec));
+                txtsaldo.setTextColor(Color.WHITE);
+                imgSem.setImageResource(R.mipmap.green);
+                btnUpdate.setEnabled(true);
+            }else if(valAct > valAnt){
+                int saldo = valAct - valAnt;
+                String sldo = Integer.toString(saldo);
+                txtsaldo.setText(sldo);
+                txtsaldo.setBackgroundColor(getResources().getColor(R.color.validLec));
+                btnUpdate.setEnabled(true);
+            }
+        }else{
+            btnUpdate.setEnabled(false);
+        }
+    }
+
     public void updateCli(){
         displayLocation();
-        String nroMed, fecAct, lecAct, obsrv,lati,longi,androidID;
-        nroMed = txtnroMedi.getText().toString();
+        String fecAct, lecAct, obsrv,lati,longi,nrosoc;
+        //nroMed = txtnroMedi.getText().toString();
         fecAct = dateView.getText().toString();
         lecAct = txtvalUltLec.getText().toString();
         obsrv = txtobvTxt.getText().toString();
+        nrosoc = txtnrosocio.getText().toString();
         lati = txtLatitude.getText().toString();
         longi = txtLongitude.getText().toString();
+
         /*
         String lati, longi;
         HashMap<String, String> coordinates = location.displayLocation();
@@ -182,46 +282,19 @@ public class form_data extends AppCompatActivity implements GoogleApiClient.Conn
         Log.d("Cordenada", "Longitud "+ longi);
         */
         
-        controller.updateClients(nroMed, fecAct, lecAct, obsrv, lati, longi);
+        controller.updateClients(nrosoc, fecAct, lecAct, obsrv, lati, longi);
 
         Toast.makeText(getApplicationContext(), "Datos Actualizados!!", Toast.LENGTH_LONG).show();
-        reloadActivity();
+        //reloadActivity();
         Intent objIntent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(objIntent);
         finish();
     }
 
 
-
-    public void setDate(View view){
-        showDialog(999);
-        //Toast.makeText(getApplicationContext(), "ca", Toast.LENGTH_SHORT).show();
-    }
-
-
-    protected Dialog onCreateDialog(int id){
-        // TODO Auto-generated method stub
-        if(id == 999){
-            return new DatePickerDialog(this, myDateListener, year, month, day);
-        }
-        return null;
-    }
-
-    private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
-
-        @Override
-        public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
-            // TODO Auto-generated method stub
-            // arg1 = year
-            // arg2 = month
-            // arg3 = day
-            showDate(arg1, arg2+1, arg3);
-        }
-    };
-
-    private void showDate(int year, int month, int day){
+    private void showDate(int year, int month, int day, int hour, int second){
         dateView.setText(new StringBuilder().append(day).append("/")
-                .append(month).append("/").append(year));
+                .append(month).append("/").append(year).append(" ").append(hour).append(":").append(second));
     }
 
     // Reload MainActivity

@@ -21,15 +21,30 @@
 
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" android:parentActivityName=".AdminHome" />
-        <activity android:name=".form_data" android:parentActivityName=".MainActivity" />
-        <activity android:name=".AdminHome"/>
-        <activity android:name=".LocationController" />
+
+        <activity
+            android:name=".MainActivity"
+            android:parentActivityName=".AdminHome"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".form_data"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".AdminHome"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".LocationController"
+            android:screenOrientation="portrait"/>
     </application>
 </manifest>

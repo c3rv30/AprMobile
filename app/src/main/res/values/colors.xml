@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3F51B5</color>
+    <color name="colorApp">#000066</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="backGround">#DAE5E5</color>
     <!-- BackgroundColor SplashScreen-->
     <color name="backgronudColorSplash">#FFFFFF</color>
 
     <!-- Colors ListView -->
-    <color name="updatedClient">#33CC33</color>
+    <color name="updatedClient">#33B5E5</color>
     <color name="unUpdatedClient">#FFFFFF</color>
+
+    <!-- backgound form_data -->
+    <color name="back">#0099CC</color>
+
+    <color name="validLec">#00C43F</color>
+    <color name="invLec">#FF0017</color>
 
 </resources>
