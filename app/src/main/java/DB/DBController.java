@@ -22,8 +22,10 @@ public class DBController extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     // Database Name
     private static final String DATABASE_NAME = "apr";
-    // Contacts table name
+    // Clientes table name
     private static final String TABLE_CLIENTES = "clientes";
+    //ID_DEVICE table name
+    private static final String TABLE_ID = "id_device";
     // clientes Table Columns names
     private static final String KEY_NOMBRE = "nom";
     private static final String KEY_NRO_SOCIO = "nro_socio";
@@ -40,12 +42,16 @@ public class DBController extends SQLiteOpenHelper {
 
     private static final String KEY_ACT_STATE = "est_act";
 
+    // ID table columm name
+    private static final String KEY_ID_DEVICE = "id_device";
+
     public DBController(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         String CREATE_CLIENTES_TABLE = "CREATE TABLE " + TABLE_CLIENTES + "("
                 + KEY_NOMBRE + " TEXT,"
                 + KEY_NRO_SOCIO + " TEXT,"
@@ -60,13 +66,22 @@ public class DBController extends SQLiteOpenHelper {
                 + KEY_LONGITUDE + " TEXT,"
                 + KEY_OBSERVACION + " TEXT"+")";
         // FALTA PERIODO ACTUAL
+
+        String CREATE_ID_TABLE = "CREATE TABLE " + TABLE_ID + "("
+                + KEY_ID_DEVICE + " TEXT";
+
         db.execSQL(CREATE_CLIENTES_TABLE);
+        db.execSQL(CREATE_ID_TABLE);
+
     }
+
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CLIENTES);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ID);
         // Creating tables again
         onCreate(db);
     }
@@ -96,6 +111,17 @@ public class DBController extends SQLiteOpenHelper {
         db.close(); // Closing database connection
     }
 
+    // Adding new
+    public void addID(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_ID_DEVICE, id);
+        // Inserting Row
+        db.insert(TABLE_ID, null, values);
+        db.close(); // Closing database connection
+    }
+
+
     // Get list of Users from SQLite DB as Array List
     public ArrayList<HashMap<String, String>> getAllUsersLec() {
         ArrayList<HashMap<String, String>> usersList;
@@ -123,6 +149,18 @@ public class DBController extends SQLiteOpenHelper {
         cursor.close();
         //database.close();
         return usersList;
+    }
+
+    // Get list of Users from SQLite DB as Array List
+    public String getID() {
+        String id;
+        String selectQuery = "SELECT * FROM " + TABLE_ID;
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        id = cursor.getString(0);
+        cursor.close();
+        //database.close();
+        return id;
     }
 
     public ArrayList<HashMap<String, String>> getNroMed() {
@@ -172,6 +210,16 @@ public class DBController extends SQLiteOpenHelper {
         return rows;
     }
 
+    public int getRowsID() {
+        int rows;
+        SQLiteDatabase database = this.getReadableDatabase();
+        Cursor cursor =  database.rawQuery( "SELECT COUNT(*) FROM "+TABLE_ID+"", null );
+        cursor.moveToFirst();
+        rows = cursor.getInt(0);
+        cursor.close();
+        database.close();
+        return rows;
+    }
 
     // Get list of Users from SQLite DB as Array List
     public HashMap<String, String> getClientData(String nrsoc) {

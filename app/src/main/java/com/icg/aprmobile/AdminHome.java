@@ -51,7 +51,7 @@ public class AdminHome extends AppCompatActivity{
             getSupportActionBar().setDisplayUseLogoEnabled(true);
         }
 
-        id_android = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+
 
         // Initialize Progress Dialog properties
         prgDialog = new ProgressDialog(this);
@@ -149,6 +149,22 @@ public class AdminHome extends AppCompatActivity{
 
     // Method to Sync MySQL to SQLite DB
     public void syncSQLiteMySQLDB() {
+
+        //id_android = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+        id_android = "99";
+        if(id_android.equals("99")){
+            int rowsID = controller.getRowsID();
+            if (rowsID == 0){
+                int min = 80000000;
+                int max = 99999999;
+                int id = (int) Math.floor(Math.random() * (max - min) + min);
+                id_android = Integer.toString(id);
+                controller.addID(id_android);
+            }else{
+                id_android = controller.getID();
+            }
+        }
+
         // Create AsycHttpClient object
         AsyncHttpClient client = new AsyncHttpClient();
         // Http Request Params Object
@@ -240,7 +256,7 @@ public class AdminHome extends AppCompatActivity{
         }
     }
 
-    // Method to inform remote MySQL DB about completion of Sync activity
+    /*// Method to inform remote MySQL DB about completion of Sync activity
     public void updateMySQLSyncSts(String json) {
         System.out.println(json);
         AsyncHttpClient client = new AsyncHttpClient();
@@ -258,7 +274,7 @@ public class AdminHome extends AppCompatActivity{
             }
         });
     }
-
+    */
     public void syncSQLiteToMySQLDB(){
         //Create AsycHttpClient object
         AsyncHttpClient client = new AsyncHttpClient();
