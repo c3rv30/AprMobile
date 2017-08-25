@@ -150,9 +150,8 @@ public class AdminHome extends AppCompatActivity{
     // Method to Sync MySQL to SQLite DB
     public void syncSQLiteMySQLDB() {
 
-        //id_android = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-        id_android = "99";
-        if(id_android.equals("99")){
+        id_android = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+        if(id_android.equals("")){
             int rowsID = controller.getRowsID();
             if (rowsID == 0){
                 int min = 80000000;
@@ -161,7 +160,8 @@ public class AdminHome extends AppCompatActivity{
                 id_android = Integer.toString(id);
                 controller.addID(id_android);
             }else{
-                id_android = controller.getID();
+                ArrayList<HashMap<String, String>> userList =  controller.getID();
+                id_android = userList.get(0).get("id");
             }
         }
 

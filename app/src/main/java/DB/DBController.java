@@ -25,7 +25,7 @@ public class DBController extends SQLiteOpenHelper {
     // Clientes table name
     private static final String TABLE_CLIENTES = "clientes";
     //ID_DEVICE table name
-    private static final String TABLE_ID = "id_device";
+    private static final String TABLE_ID = "idDevice";
     // clientes Table Columns names
     private static final String KEY_NOMBRE = "nom";
     private static final String KEY_NRO_SOCIO = "nro_socio";
@@ -66,11 +66,9 @@ public class DBController extends SQLiteOpenHelper {
                 + KEY_LONGITUDE + " TEXT,"
                 + KEY_OBSERVACION + " TEXT"+")";
         // FALTA PERIODO ACTUAL
-
-        String CREATE_ID_TABLE = "CREATE TABLE " + TABLE_ID + "("
-                + KEY_ID_DEVICE + " TEXT";
-
         db.execSQL(CREATE_CLIENTES_TABLE);
+
+        String CREATE_ID_TABLE = "CREATE TABLE " + TABLE_ID + "("+ KEY_ID_DEVICE + " TEXT)";
         db.execSQL(CREATE_ID_TABLE);
 
     }
@@ -152,15 +150,24 @@ public class DBController extends SQLiteOpenHelper {
     }
 
     // Get list of Users from SQLite DB as Array List
-    public String getID() {
-        String id;
+    public ArrayList<HashMap<String, String>> getID() {
+        ArrayList<HashMap<String, String>> usersList;
+        usersList = new ArrayList<>();
         String selectQuery = "SELECT * FROM " + TABLE_ID;
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.rawQuery(selectQuery, null);
-        id = cursor.getString(0);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<>();
+                map.put("id", cursor.getString(0));
+                usersList.add(map);
+            } while (cursor.moveToNext());
+        }
         cursor.close();
         //database.close();
-        return id;
+        return usersList;
     }
 
     public ArrayList<HashMap<String, String>> getNroMed() {
